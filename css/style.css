@@ -90,6 +90,7 @@ input[type=number] {
 
 html {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 svg {
@@ -638,6 +639,8 @@ label {
   position: relative;
   padding: 290px 0 360px;
   margin-top: 7px;
+  transition: all .3s;
+  background-attachment: fixed;
 }
 .qa:before {
   content: '';
@@ -645,7 +648,21 @@ label {
   z-index: 1;
   width: 100%;
   height: 100%;
-  background-image: url(../img/sky4.png), url(../img/sky5.png);
+  background-image: url(../img/sky4.png), url(../img/sky.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 0, left bottom;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+.qa:before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/sky2.png), url(../img/sky3.png);
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: 0 0, left bottom;
@@ -659,6 +676,7 @@ label {
 .qa__items {
   padding: 0 55px;
   margin-top: 37px;
+  transition: all .3s;
 }
 .qa__item {
   display: flex;
@@ -679,19 +697,22 @@ label {
   box-shadow: 5px 15px 40px rgba(30, 35, 66, 0.15);
   border-radius: 20px;
   opacity: 0;
-  transition: all .3s;
+  transition: all .5s;
 }
 .qa__item--active:before {
   opacity: 1;
 }
 .qa__item--active .qa__item-show {
   font-size: 32px;
+  transition: all .3s;
+  cursor: pointer;
 }
 .qa__item--active .qa__item-hidden {
   opacity: 1;
   visibility: visible;
   position: relative;
   pointer-events: unset;
+  transition: all .3s;
 }
 .qa__item--active .qa__item-btn {
   align-self: flex-start;
@@ -729,6 +750,9 @@ label {
   z-index: 2;
 }
 
+.feedback {
+  padding-top: 15px;
+}
 .feedback__slider {
   margin-top: 35px;
   display: flex;
@@ -742,6 +766,10 @@ label {
 .feedback__item {
   position: relative;
 }
+.feedback__item a {
+  display: block;
+  pointer-events: none;
+}
 .feedback__item img {
   width: auto;
   min-height: 100%;
@@ -750,7 +778,7 @@ label {
 .feedback .swiper-slide {
   height: 250px;
 }
-.feedback .swiper-slide img {
+.feedback .swiper-slide a {
   width: 250px;
   height: 250px;
   position: absolute;
@@ -759,12 +787,16 @@ label {
   transform: translate(-50%, -50%);
   z-index: 3;
 }
+.feedback .swiper-slide a img {
+  width: 100%;
+  height: 100%;
+}
 .feedback .swiper-slide-next,
 .feedback .swiper-slide-prev {
   overflow: unset;
 }
-.feedback .swiper-slide-next img,
-.feedback .swiper-slide-prev img {
+.feedback .swiper-slide-next a,
+.feedback .swiper-slide-prev a {
   width: 310px;
   height: 310px;
   position: absolute;
@@ -776,7 +808,7 @@ label {
 .feedback .swiper-slide-active {
   overflow: unset;
 }
-.feedback .swiper-slide-active img {
+.feedback .swiper-slide-active a {
   width: 390px;
   height: 390px;
   position: absolute;
@@ -784,6 +816,7 @@ label {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
+  pointer-events: unset;
 }
 .feedback__next, .feedback__prev {
   position: static;
@@ -954,6 +987,50 @@ label {
   line-height: 156.9%;
   margin-top: 20px;
   text-align: center;
+}
+
+.modal-dialog {
+  width: 1200px;
+}
+.modal__content {
+  width: 100%;
+  height: 700px;
+}
+.modal .close {
+  opacity: 1;
+  font-size: 30px;
+}
+.modal iframe {
+  max-height: calc(100vh - 100px);
+}
+@media screen and (max-width: 1230px) {
+  .modal-dialog {
+    width: 990px;
+  }
+  .modal__content {
+    height: 600px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .modal-dialog {
+    width: 600px;
+  }
+  .modal__content {
+    height: 400px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .modal-dialog {
+    width: calc(100% - 20px);
+  }
+  .modal__content {
+    height: 360px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .modal__content {
+    height: 250px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -1196,7 +1273,7 @@ label {
   .feedback__item {
     height: unset !important;
   }
-  .feedback__item img {
+  .feedback__item a {
     position: static !important;
     transform: translate(0, 0) !important;
     width: 100% !important;

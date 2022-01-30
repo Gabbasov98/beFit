@@ -474,13 +474,29 @@
     position: relative;
     padding: 290px 0 360px;
     margin-top: 7px;
+    transition: all .3s;
+    background-attachment: fixed;
     &:before {
         content: '';
         position: absolute;
         z-index: 1;
         width: 100%;
         height: 100%;
-        background-image: url(../img/sky4.png), url(../img/sky5.png);
+        background-image: url(../img/sky4.png), url(../img/sky.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: 0 0, left bottom;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/sky2.png), url(../img/sky3.png);
         background-size: 100% auto;
         background-repeat: no-repeat;
         background-position: 0 0, left bottom;
@@ -494,6 +510,7 @@
     &__items {
         padding: 0 55px;
         margin-top: 37px;
+        transition: all .3s;
     }
     &__item {
         display: flex;
@@ -513,7 +530,7 @@
             box-shadow: 5px 15px 40px rgba(30, 35, 66, 0.15);
             border-radius: 20px;
             opacity: 0;
-            transition: all .3s;
+            transition: all .5s;
         }
         &--active {
             &:before {
@@ -521,12 +538,15 @@
             }
             .qa__item-show {
                 font-size: 32px;
+                transition: all .3s;
+                cursor: pointer;
             }
             .qa__item-hidden {
                 opacity: 1;
                 visibility: visible;
                 position: relative;
                 pointer-events: unset;
+                transition: all .3s;
             }
             .qa__item-btn {
                 align-self: flex-start;
@@ -568,6 +588,7 @@
 }
 
 .feedback {
+    padding-top: 15px;
     &__slider {
         margin-top: 35px;
         display: flex;
@@ -580,6 +601,10 @@
     }
     &__item {
         position: relative;
+        a {
+            display: block;
+            pointer-events: none;
+        }
         img {
             width: auto;
             min-height: 100%;
@@ -588,7 +613,7 @@
     }
     .swiper-slide {
         height: 250px;
-        img {
+        a {
             width: 250px;
             height: 250px;
             position: absolute;
@@ -596,12 +621,16 @@
             top: 50%;
             transform: translate(-50%, -50%);
             z-index: 3;
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
     .swiper-slide-next,
     .swiper-slide-prev {
         overflow: unset;
-        img {
+        a {
             width: 310px;
             height: 310px;
             position: absolute;
@@ -613,7 +642,7 @@
     }
     .swiper-slide-active {
         overflow: unset;
-        img {
+        a {
             width: 390px;
             height: 390px;
             position: absolute;
@@ -621,6 +650,7 @@
             top: 50%;
             transform: translate(-50%, -50%);
             z-index: 5;
+            pointer-events: unset;
         }
     }
     &__next,
@@ -789,6 +819,52 @@
         line-height: 156.9%;
         margin-top: 20px;
         text-align: center;
+    }
+}
+
+.modal {
+    &-dialog {
+        width: 1200px;
+    }
+    &__content {
+        width: 100%;
+        height: 700px;
+    }
+    .close {
+        opacity: 1;
+        font-size: 30px;
+    }
+    iframe {
+        max-height: calc(100vh - 100px);
+    }
+    @media screen and (max-width: 1230px) {
+        &-dialog {
+            width: 990px;
+        }
+        &__content {
+            height: 600px;
+        }
+    }
+    @media screen and (max-width: 1000px) {
+        &-dialog {
+            width: 600px;
+        }
+        &__content {
+            height: 400px;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        &-dialog {
+            width: calc(100% - 20px);
+        }
+        &__content {
+            height: 360px;
+        }
+    }
+    @media screen and (max-width: 500px) {
+        &__content {
+            height: 250px;
+        }
     }
 }
 
@@ -1023,7 +1099,7 @@
         }
         &__item {
             height: unset !important;
-            img {
+            a {
                 position: static !important;
                 transform: translate(0, 0) !important;
                 width: 100% !important;
