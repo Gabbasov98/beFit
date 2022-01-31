@@ -54,6 +54,28 @@
     }
 }
 
+.header {
+    padding: 0 0 13px;
+    background: #DE8DA4;
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__link {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 130.4%;
+        letter-spacing: 0.065em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin: 13px 13px 0 0;
+    }
+    &__burger {
+        display: none;
+    }
+}
+
 .main {
     background-image: linear-gradient(180deg, #FFFFFF 0%, #E9ECFD 100%);
     position: relative;
@@ -869,6 +891,15 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .header {
+        &__inner {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        &__link {
+            margin-right: 20px;
+        }
+    }
     .main {
         &__left {
             padding-top: 40px;
@@ -897,6 +928,73 @@
 }
 
 @media screen and (max-width: 992px) {
+    .header {
+        position: fixed;
+        padding: 0;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 100%;
+        z-index: 100;
+        transition: all .3s;
+        overflow-y: auto;
+        &--active {
+            left: 0;
+        }
+        &__inner {
+            padding: 70px 0;
+            display: block;
+            text-align: center;
+        }
+        &__link {
+            margin-right: 0;
+            font-size: 20px;
+            line-height: 130.4%;
+            display: block;
+        }
+        &__burger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 101;
+            width: 30px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+                background: #212121;
+                width: 100%;
+                height: 2px;
+                border-radius: 4px;
+                transition: all .3s;
+                &:nth-child(1) {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                &:nth-child(2) {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+            &--active {
+                span {
+                    background: #FFFFFF;
+                    &:nth-child(1) {
+                        transform: translateY(5px) rotate(-45deg);
+                    }
+                    &:nth-child(2) {
+                        transform: scale(0);
+                    }
+                    &:nth-child(3) {
+                        transform: translateY(-5px) rotate(45deg);
+                    }
+                }
+            }
+        }
+    }
     .main {
         margin-bottom: 112px;
         &__bg {

@@ -29,6 +29,12 @@ function slider() {
 $(document).ready(function() {
     slider()
 
+    $(".header__burger").click(function() {
+        $(this).toggleClass("header__burger--active")
+        $(".header").toggleClass("header--active")
+        $("body").toggleClass("fixed-body")
+    })
+
     $(".process__item-btn-show").click(function() {
         $(".process__item").removeClass("process__item--active")
         $(this).parents(".process__item").addClass("process__item--active")
