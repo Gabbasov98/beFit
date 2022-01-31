@@ -35,6 +35,12 @@ $(document).ready(function() {
         $("body").toggleClass("fixed-body")
     })
 
+    $(".header__link").click(function() {
+        $(".header__burger").removeClass("header__burger--active")
+        $(".header").removeClass("header--active")
+        $("body").removeClass("fixed-body")
+    })
+
     $(".process__item-btn-show").click(function() {
         $(".process__item").removeClass("process__item--active")
         $(this).parents(".process__item").addClass("process__item--active")
